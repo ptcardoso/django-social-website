@@ -27,7 +27,7 @@ SECRET_KEY = 'hgqto+l1*6sq9b4ljcu#3%c+%-ksgex+cc$khrn!(ylnbbe%ia'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,12 @@ MIDDLEWARE = [
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social.backends.facebook.FacebookOAuth2',
 )
+
+SOCIAL_AUTH_FACEBOOK_KEY = 'XXX'        # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'XXX'     # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 LOGIN_REDIRECT_URL = reverse_lazy('account:dashboard')
 LOGIN_URL = reverse_lazy('account:login')
